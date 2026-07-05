@@ -1,0 +1,23 @@
+<div class="confirm-dialog-container">
+  <div class="dialog-icon-wrapper">
+    <mat-icon class="warning-icon">warning</mat-icon>
+  </div>
+  
+  <h2 mat-dialog-title class="dialog-title">
+    {{ data.title || 'Are you sure?' }}
+  </h2>
+  
+  <mat-dialog-content class="dialog-content">
+    <p>{{ data.message || 'Do you really want to delete this record? This process cannot be undone.' }}</p>
+  </mat-dialog-content>
+  
+  <mat-dialog-actions align="center" class="dialog-actions">
+    <button mat-button class="cancel-btn" (click)="onCancel()" id="confirm-dialog-cancel">
+      {{ data.cancelText || 'Cancel' }}
+    </button>
+    <button mat-raised-button color="warn" class="confirm-btn" (click)="onConfirm()" id="confirm-dialog-confirm">
+      <mat-icon>delete</mat-icon>
+      {{ data.confirmText || 'Delete' }}
+    </button>
+  </mat-dialog-actions>
+</div>

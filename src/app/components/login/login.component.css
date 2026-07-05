@@ -1,0 +1,202 @@
+.login-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(-45deg, #0f172a, #1e1b4b, #311042, #020617);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Background Animated Blobs */
+.login-container::before,
+.login-container::after {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(99, 102, 241, 0) 70%);
+    filter: blur(40px);
+    z-index: 1;
+}
+
+.login-container::before {
+    top: 10%;
+    left: 15%;
+    animation: float1 10s ease-in-out infinite;
+}
+
+.login-container::after {
+    bottom: 10%;
+    right: 15%;
+    animation: float2 12s ease-in-out infinite;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes float1 {
+    0%, 100% { transform: translateY(0px) scale(1); }
+    50% { transform: translateY(-30px) scale(1.1); }
+}
+
+@keyframes float2 {
+    0%, 100% { transform: translateY(0px) scale(1.1); }
+    50% { transform: translateY(30px) scale(0.95); }
+}
+
+.login-card {
+    width: 440px;
+    max-width: 90%;
+    padding: 40px;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.08) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4) !important;
+    z-index: 2;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.login-card:hover {
+    transform: translateY(-5px);
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.login-icon {
+    font-size: 64px;
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, #818cf8, #c084fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0 auto 15px;
+}
+
+.login-header h1 {
+    margin-top: 10px;
+    margin-bottom: 8px;
+    font-size: 26px;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+}
+
+.login-header p {
+    color: #94a3b8;
+    font-size: 14px;
+}
+
+.full-width {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* Material overrides for input inside glass card */
+::ng-deep .login-card .mat-mdc-text-field-wrapper {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+::ng-deep .login-card .mat-mdc-form-field-flex {
+    border-radius: 14px !important;
+}
+
+::ng-deep .login-card input.mat-mdc-input-element {
+    color: #ffffff !important;
+}
+
+::ng-deep .login-card .mat-mdc-form-field-label {
+    color: #94a3b8 !important;
+}
+
+::ng-deep .login-card .mat-mdc-form-field-focus-active .mat-mdc-form-field-label {
+    color: #c084fc !important;
+}
+
+::ng-deep .login-card .mat-mdc-form-field-icon-suffix mat-icon,
+::ng-deep .login-card .mat-mdc-form-field-icon-prefix mat-icon {
+    color: #94a3b8 !important;
+}
+
+.login-btn {
+    width: 100%;
+    height: 52px;
+    background: linear-gradient(135deg, #6366f1, #a855f7) !important;
+    color: white !important;
+    border-radius: 14px !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3) !important;
+    transition: all 0.3s ease !important;
+    margin-top: 10px;
+}
+
+.login-btn:hover:not([disabled]) {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 25px rgba(99, 102, 241, 0.45) !important;
+    background: linear-gradient(135deg, #4f46e5, #9333ea) !important;
+}
+
+.login-btn[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background: #475569 !important;
+    box-shadow: none !important;
+}
+
+.button-spinner {
+    margin-right: 8px;
+}
+
+::ng-deep .button-spinner circle {
+    stroke: #ffffff !important;
+}
+
+.toggle-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.toggle-container button {
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    color: #cbd5e1 !important;
+    transition: color 0.2s ease;
+}
+
+.toggle-container button:hover {
+    color: #a855f7 !important;
+}
+
+/* Animations for form transitions */
+form {
+    animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

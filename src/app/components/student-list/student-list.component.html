@@ -1,0 +1,501 @@
+<div class="student-page">
+
+    <!-- ================= HEADER ================= -->
+
+    <div class="page-header">
+
+        <div>
+
+            <h1>
+                Student Management
+            </h1>
+
+            <p>
+                Manage student records, search, edit and organize everything from one place.
+            </p>
+
+        </div>
+
+        <button
+            mat-raised-button
+            color="primary"
+            (click)="addStudent()">
+
+            <mat-icon>person_add</mat-icon>
+
+            Add Student
+
+        </button>
+
+    </div>
+
+    <!-- ================= SUMMARY ================= -->
+
+    <div class="summary-grid">
+
+        <mat-card class="summary-card students">
+
+            <div class="summary-icon">
+
+                <mat-icon>groups</mat-icon>
+
+            </div>
+
+            <div>
+
+                <span>Total Students</span>
+
+                <h2>{{students.length}}</h2>
+
+            </div>
+
+        </mat-card>
+
+        <mat-card class="summary-card courses">
+
+            <div class="summary-icon">
+
+                <mat-icon>menu_book</mat-icon>
+
+            </div>
+
+            <div>
+
+                <span>Courses</span>
+
+                <h2>8</h2>
+
+            </div>
+
+        </mat-card>
+
+        <mat-card class="summary-card male">
+
+            <div class="summary-icon">
+
+                <mat-icon>man</mat-icon>
+
+            </div>
+
+            <div>
+
+                <span>Male</span>
+
+                <h2>{{ maleStudents }}</h2>
+
+            </div>
+
+        </mat-card>
+
+        <mat-card class="summary-card female">
+
+            <div class="summary-icon">
+
+                <mat-icon>woman</mat-icon>
+
+            </div>
+
+            <div>
+
+                <span>Female</span>
+
+                <h2>{{ femaleStudents }}</h2>
+
+            </div>
+
+        </mat-card>
+
+    </div>
+
+    <!-- ================= TABLE CARD ================= -->
+
+    <mat-card class="table-card">
+
+        <!-- SEARCH -->
+
+        <div class="toolbar">
+
+            <mat-form-field
+                appearance="outline"
+                class="search-box">
+
+                <mat-label>
+                    Search Students
+                </mat-label>
+
+                <input
+                    matInput
+                    [(ngModel)]="searchText"
+                    (keyup)="searchStudent()"
+                    id="student-search-input"
+                    placeholder="Search by name...">
+
+                <mat-icon matSuffix>
+                    search
+                </mat-icon>
+
+            </mat-form-field>
+
+            <div class="toolbar-actions">
+                <button
+                    mat-raised-button
+                    class="export-btn excel"
+                    matTooltip="Export records to Microsoft Excel"
+                    (click)="exportToExcel()"
+                    id="btn-export-excel">
+                    <mat-icon>description</mat-icon>
+                    Excel
+                </button>
+                
+                <button
+                    mat-raised-button
+                    class="export-btn pdf"
+                    matTooltip="Export records to PDF document"
+                    (click)="exportToPDF()"
+                    id="btn-export-pdf">
+                    <mat-icon>picture_as_pdf</mat-icon>
+                    PDF
+                </button>
+            </div>
+
+        </div>
+
+        <!-- LOADER -->
+
+        <div
+            *ngIf="loading"
+            class="loading">
+
+            <mat-spinner diameter="60">
+
+            </mat-spinner>
+
+        </div>
+
+        <!-- TABLE -->
+
+        <div
+            class="table-wrapper"
+            *ngIf="!loading">
+
+            <table
+                mat-table
+                [dataSource]="dataSource"
+                matSort
+                class="student-table">
+
+                <!-- ID -->
+
+                <ng-container matColumnDef="id">
+
+                    <th
+                        mat-header-cell
+                        *matHeaderCellDef
+                        mat-sort-header>
+
+                        ID
+
+                    </th>
+
+                    <td
+                        mat-cell
+                        *matCellDef="let student">
+
+                        #{{student.id}}
+
+                    </td>
+
+                </ng-container>
+
+                <!-- NAME -->
+
+                <ng-container matColumnDef="name">
+
+                    <th
+                        mat-header-cell
+                        *matHeaderCellDef
+                        mat-sort-header>
+
+                        Student
+
+                    </th>
+
+                    <td
+                        mat-cell
+                        *matCellDef="let student">
+
+                        <div class="student-info">
+
+                            <div class="avatar">
+
+                                {{student.name.charAt(0)}}
+
+                            </div>
+
+                            <div>
+
+                                <strong>
+
+                                    {{student.name}}
+
+                                </strong>
+
+                                <small>
+
+                                    {{student.email}}
+
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </td>
+
+                </ng-container>
+
+                <!-- EMAIL -->
+
+                <ng-container matColumnDef="email">
+
+                    <th
+                        mat-header-cell
+                        *matHeaderCellDef
+                        mat-sort-header>
+
+                        Email
+
+                    </th>
+
+                    <td
+                        mat-cell
+                        *matCellDef="let student">
+
+                        {{student.email}}
+
+                    </td>
+
+                </ng-container>
+
+                <!-- MOBILE -->
+
+                <ng-container matColumnDef="mobile">
+
+                    <th
+                        mat-header-cell
+                        *matHeaderCellDef
+                        mat-sort-header>
+
+                        Mobile
+
+                    </th>
+
+                    <td
+                        mat-cell
+                        *matCellDef="let student">
+
+                        {{student.mobile}}
+
+                    </td>
+
+                </ng-container>
+
+                <!-- COURSE -->
+
+                <ng-container matColumnDef="course">
+
+                    <th
+                        mat-header-cell
+                        *matHeaderCellDef
+                        mat-sort-header>
+
+                        Course
+
+                    </th>
+
+                    <td
+                        mat-cell
+                        *matCellDef="let student">
+
+                        <span class="course-badge">
+
+                            {{student.course}}
+
+                        </span>
+
+                    </td>
+
+                </ng-container>
+
+                <!-- GENDER -->
+
+                <ng-container matColumnDef="gender">
+
+                    <th
+                        mat-header-cell
+                        *matHeaderCellDef
+                        mat-sort-header>
+
+                        Gender
+
+                    </th>
+
+                    <td
+                        mat-cell
+                        *matCellDef="let student">
+
+                        <span
+                            class="gender-badge"
+
+                            [ngClass]="student.gender.toLowerCase()">
+
+                            {{student.gender}}
+
+                        </span>
+
+                    </td>
+
+                </ng-container>
+
+                <!-- DOB -->
+
+                <ng-container matColumnDef="dob">
+
+                    <th
+                        mat-header-cell
+                        *matHeaderCellDef
+                        mat-sort-header>
+
+                        Date of Birth
+
+                    </th>
+
+                    <td
+                        mat-cell
+                        *matCellDef="let student">
+
+                        {{student.dob}}
+
+                    </td>
+
+                </ng-container>
+
+                <!-- ACTION -->
+
+                <ng-container matColumnDef="actions">
+
+                    <th
+                        mat-header-cell
+                        *matHeaderCellDef>
+
+                        Actions
+
+                    </th>
+
+                    <td
+                        mat-cell
+                        *matCellDef="let student">
+
+                        <div class="action-buttons">
+
+                            <button
+                                mat-mini-fab
+                                color="primary"
+                                matTooltip="Edit Student"
+                                (click)="editStudent(student)">
+
+                                <mat-icon>
+
+                                    edit
+
+                                </mat-icon>
+
+                            </button>
+
+                            <button
+                                mat-mini-fab
+                                color="warn"
+                                matTooltip="Delete Student"
+                                (click)="deleteStudent(student)">
+
+                                <mat-icon>
+
+                                    delete
+
+                                </mat-icon>
+
+                            </button>
+
+                        </div>
+
+                    </td>
+
+                </ng-container>
+
+                <tr
+                    mat-header-row
+                    *matHeaderRowDef="displayedColumns">
+
+                </tr>
+
+                <tr
+                    mat-row
+                    *matRowDef="let row; columns: displayedColumns;">
+
+                </tr>
+
+            </table>
+
+        </div>
+
+        <!-- EMPTY -->
+
+        <div
+            class="empty-state"
+            *ngIf="!loading && dataSource.data.length==0">
+
+            <mat-icon>
+
+                school
+
+            </mat-icon>
+
+            <h2>
+
+                No Students Found
+
+            </h2>
+
+            <p>
+
+                Start by adding your first student.
+
+            </p>
+
+            <button
+                mat-raised-button
+                color="primary"
+                (click)="addStudent()">
+
+                <mat-icon>
+
+                    person_add
+
+                </mat-icon>
+
+                Add Student
+
+            </button>
+
+        </div>
+
+        <mat-paginator
+            [pageSize]="5"
+            [pageSizeOptions]="[5,10,20]"
+            showFirstLastButtons>
+
+        </mat-paginator>
+
+    </mat-card>
+
+</div>

@@ -1,0 +1,545 @@
+<div class="dashboard-container" @fade>
+
+    <div class="header">
+
+        <div>
+
+            <h1>{{ greeting }}, {{ username }} 👋</h1>
+
+            <p>
+                Student Course Management System
+            </p>
+
+            <small>
+                <mat-icon>schedule</mat-icon>
+                {{ currentDate | date:'EEEE, dd MMMM yyyy • hh:mm a' }}
+            </small>
+
+        </div>
+
+        <div class="header-actions">
+
+            <button mat-stroked-button color="primary" (click)="refreshDashboard()">
+
+                <mat-icon>refresh</mat-icon>
+
+                Refresh
+
+            </button>
+
+            <button mat-raised-button color="primary" routerLink="/students">
+
+                <mat-icon>person_add</mat-icon>
+
+                Add Student
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="welcome-banner">
+
+        <div>
+
+            <h2>👋 Welcome Back</h2>
+
+            <p>Manage students, monitor statistics and keep your records up to date.</p>
+
+        </div>
+
+        <button mat-raised-button color="primary">
+            View Students
+        </button>
+
+    </div>
+
+    <div class="card-container">
+
+        <mat-card class="dashboard-card students">
+
+            <div class="card-header">
+
+                <div class="icon-circle">
+
+                    <mat-icon>groups</mat-icon>
+
+                </div>
+
+                <div class="trend positive">
+
+                    <mat-icon>trending_up</mat-icon>
+
+                    +12%
+
+                </div>
+
+            </div>
+
+            <div class="card-body">
+
+                <span class="card-title">
+
+                    Total Students
+
+                </span>
+
+                <h2>{{displayStudents}}</h2>
+
+                <small>
+
+                    Compared to last month
+
+                </small>
+
+            </div>
+
+        </mat-card>
+
+        <mat-card class="dashboard-card courses">
+
+            <div class="card-top">
+
+                <mat-icon>menu_book</mat-icon>
+
+                <button mat-icon-button>
+
+                    <mat-icon>info</mat-icon>
+
+                </button>
+
+            </div>
+
+            <h2>{{displayCourses}}</h2>
+
+            <p>Total Courses</p>
+
+        </mat-card>
+
+        <mat-card class="dashboard-card male">
+
+            <div class="card-top">
+
+                <mat-icon>man</mat-icon>
+
+                <button mat-icon-button>
+
+                    <mat-icon>info</mat-icon>
+
+                </button>
+
+            </div>
+
+            <h2>{{displayMale}}</h2>
+
+            <p>Male Students</p>
+
+        </mat-card>
+
+        <mat-card class="dashboard-card female">
+
+            <div class="card-top">
+
+                <mat-icon>woman</mat-icon>
+
+                <button mat-icon-button>
+
+                    <mat-icon>info</mat-icon>
+
+                </button>
+
+            </div>
+
+            <h2>{{displayFemale}}</h2>
+
+            <p>Female Students</p>
+
+        </mat-card>
+
+    </div>
+
+    <div class="bottom-grid">
+
+        <!-- Quick Actions -->
+
+        <mat-card class="action-card">
+
+            <h2>
+
+                <mat-icon>bolt</mat-icon>
+
+                Quick Actions
+
+            </h2>
+
+            <div class="action-grid">
+
+                <button mat-flat-button color="primary" routerLink="/students">
+
+                    <mat-icon>person_add</mat-icon>
+
+                    Add Student
+
+                </button>
+
+                <button mat-flat-button color="accent" routerLink="/students">
+
+                    <mat-icon>groups</mat-icon>
+
+                    Manage Students
+
+                </button>
+
+                <button mat-flat-button>
+
+                    <mat-icon>assessment</mat-icon>
+
+                    Reports
+
+                </button>
+
+                <button mat-flat-button>
+
+                    <mat-icon>download</mat-icon>
+
+                    Export Data
+
+                </button>
+
+            </div>
+
+        </mat-card>
+
+        <!-- Recent Activity -->
+
+        <mat-card class="activity-card">
+
+            <h2>
+
+                <mat-icon>history</mat-icon>
+
+                Recent Activity
+
+            </h2>
+
+            <div class="activity-list">
+
+                <div class="activity-item">
+
+                    <div class="activity-icon success">
+
+                        <mat-icon>person_add</mat-icon>
+
+                    </div>
+
+                    <div>
+
+                        <strong>Rahul Kumar</strong>
+
+                        <p>New student added</p>
+
+                    </div>
+
+                    <span>2 min ago</span>
+
+                </div>
+
+                <div class="activity-item">
+
+                    <div class="activity-icon warning">
+
+                        <mat-icon>edit</mat-icon>
+
+                    </div>
+
+                    <div>
+
+                        <strong>Priya Sharma</strong>
+
+                        <p>Student record updated</p>
+
+                    </div>
+
+                    <span>10 min ago</span>
+
+                </div>
+
+                <div class="activity-item">
+
+                    <div class="activity-icon info">
+
+                        <mat-icon>storage</mat-icon>
+
+                    </div>
+
+                    <div>
+
+                        <strong>Database</strong>
+
+                        <p>Synchronization completed</p>
+
+                    </div>
+
+                    <span>30 min ago</span>
+
+                </div>
+
+                <div class="activity-item">
+
+                    <div class="activity-icon success">
+
+                        <mat-icon>menu_book</mat-icon>
+
+                    </div>
+
+                    <div>
+
+                        <strong>Course</strong>
+
+                        <p>Java Full Stack added</p>
+
+                    </div>
+
+                    <span>1 hour ago</span>
+
+                </div>
+
+            </div>
+
+        </mat-card>
+
+    </div>
+
+    <div class="analytics-header">
+
+        <div>
+
+            <h2>
+
+                <mat-icon>analytics</mat-icon>
+
+                Analytics Overview
+
+            </h2>
+
+            <p>
+                Live statistics generated from the Student Management System.
+            </p>
+
+        </div>
+
+        <span class="updated">
+
+            <mat-icon>schedule</mat-icon>
+
+            Updated Just Now
+
+        </span>
+
+    </div>
+
+    <div class="chart-grid">
+
+        <!-- Gender -->
+
+        <mat-card class="chart-card">
+
+            <div class="chart-header">
+
+                <div>
+
+                    <h3>Gender Distribution</h3>
+
+                    <small>
+
+                        Student ratio
+
+                    </small>
+
+                </div>
+
+                <mat-icon>
+
+                    pie_chart
+
+                </mat-icon>
+
+            </div>
+
+            <canvas baseChart [data]="pieChartData" type="doughnut" [options]="pieChartOptions">
+
+            </canvas>
+
+            <div class="chart-footer">
+
+                <div>
+
+                    <span class="dot male-dot"></span>
+
+                    Male
+
+                </div>
+
+                <div>
+
+                    <span class="dot female-dot"></span>
+
+                    Female
+
+                </div>
+
+            </div>
+
+        </mat-card>
+
+        <!-- Course -->
+
+        <mat-card class="chart-card">
+
+            <div class="chart-header">
+
+                <div>
+
+                    <h3>Students by Course</h3>
+
+                    <small>
+
+                        Enrollment overview
+
+                    </small>
+
+                </div>
+
+                <mat-icon>
+
+                    bar_chart
+
+                </mat-icon>
+
+            </div>
+
+            <canvas baseChart [data]="barChartData" type="bar" [options]="barChartOptions">
+
+            </canvas>
+
+            <div class="chart-footer">
+
+                Total Courses :
+
+                <strong>
+
+                    {{displayCourses}}
+
+                </strong>
+
+            </div>
+
+        </mat-card>
+
+    </div>
+
+    <div class="footer-grid">
+
+        <mat-card class="health-card">
+
+            <div class="health-header">
+
+                <mat-icon color="primary">monitor_heart</mat-icon>
+
+                <h3>System Health</h3>
+
+            </div>
+
+            <div class="health-list">
+
+                <div>
+
+                    <span>Angular</span>
+
+                    <mat-chip color="primary">Online</mat-chip>
+
+                </div>
+
+                <div>
+
+                    <span>Spring Boot</span>
+
+                    <mat-chip color="primary">Running</mat-chip>
+
+                </div>
+
+                <div>
+
+                    <span>MySQL</span>
+
+                    <mat-chip color="primary">Connected</mat-chip>
+
+                </div>
+
+                <div>
+
+                    <span>REST API</span>
+
+                    <mat-chip color="primary">Healthy</mat-chip>
+
+                </div>
+
+            </div>
+
+        </mat-card>
+
+        <mat-card class="clock-card">
+
+            <mat-icon>
+
+                schedule
+
+            </mat-icon>
+
+            <h2>
+
+                {{currentDate | date:'hh:mm:ss a'}}
+
+            </h2>
+
+            <p>
+
+                {{currentDate | date:'EEEE, dd MMMM yyyy'}}
+
+            </p>
+
+        </mat-card>
+
+        <mat-card class="database-card">
+
+            <mat-icon>
+
+                storage
+
+            </mat-icon>
+
+            <h3>
+
+                Database Status
+
+            </h3>
+
+            <h1>
+
+                Online
+
+            </h1>
+
+            <small>
+
+                Last Sync:
+                Just Now
+
+            </small>
+
+        </mat-card>
+
+    </div>
+
+</div>

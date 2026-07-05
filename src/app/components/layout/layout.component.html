@@ -1,0 +1,130 @@
+<mat-sidenav-container class="layout">
+
+    <mat-sidenav #drawer [mode]="isMobile ? 'over' : 'side'" [opened]="!isMobile" class="sidebar">
+
+        <div class="logo">
+
+            <mat-icon>school</mat-icon>
+
+            <div>
+
+                <h2 id="logo-text">Student CMS</h2>
+
+                <small id="logo-subtext">Angular + Spring Boot</small>
+
+            </div>
+
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <mat-nav-list>
+
+            <a mat-list-item routerLink="/dashboard" routerLinkActive="active" id="nav-dashboard">
+
+                <mat-icon>dashboard</mat-icon>
+
+                Dashboard
+
+            </a>
+
+            <a mat-list-item routerLink="/students" routerLinkActive="active" id="nav-students">
+
+                <mat-icon>groups</mat-icon>
+
+                Students
+
+            </a>
+
+            <a mat-list-item id="nav-reports">
+
+                <mat-icon>analytics</mat-icon>
+
+                Reports
+
+            </a>
+
+            <a mat-list-item id="nav-settings">
+
+                <mat-icon>settings</mat-icon>
+
+                Settings
+
+            </a>
+
+        </mat-nav-list>
+
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+
+        <mat-toolbar color="primary">
+
+            <button mat-icon-button (click)="toggleSidebar()" id="btn-toggle-sidenav" aria-label="Toggle Navigation Menu">
+
+                <mat-icon>menu</mat-icon>
+
+            </button>
+
+            <span class="title">
+
+                Student Course Management System
+
+            </span>
+
+            <span class="spacer"></span>
+
+            <!-- Theme Toggle Button -->
+            <button mat-icon-button (click)="toggleTheme()" matTooltip="Toggle Dark/Light Mode" id="btn-theme-toggle">
+                <mat-icon>{{ isDarkMode ? 'light_mode' : 'dark_mode' }}</mat-icon>
+            </button>
+
+            <!-- Profile Menu -->
+            <button mat-icon-button [matMenuTriggerFor]="menu" id="btn-profile-menu" aria-label="Open profile settings">
+
+                <div class="profile-avatar">
+
+                    {{ username.charAt(0).toUpperCase() }}
+
+                </div>
+
+            </button>
+
+            <mat-menu #menu="matMenu">
+
+                <button mat-menu-item routerLink="/dashboard" id="menu-dashboard">
+                    <mat-icon>dashboard</mat-icon>
+                    Dashboard
+                </button>
+
+                <button mat-menu-item routerLink="/students" id="menu-students">
+                    <mat-icon>groups</mat-icon>
+                    Students
+                </button>
+
+                <mat-divider></mat-divider>
+
+                <button mat-menu-item (click)="logout()" id="menu-logout">
+                    <mat-icon>logout</mat-icon>
+                    Logout
+                </button>
+
+            </mat-menu>
+
+        </mat-toolbar>
+
+        <div class="page">
+
+            <router-outlet></router-outlet>
+
+            <footer class="footer">
+
+                © 2026 Student Course Management System • Elevating Student Management
+
+            </footer>
+
+        </div>
+
+    </mat-sidenav-content>
+
+</mat-sidenav-container>

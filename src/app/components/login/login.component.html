@@ -1,0 +1,139 @@
+<div class="login-container">
+
+  <mat-card class="login-card">
+
+    <div class="login-header">
+
+      <mat-icon class="login-icon">school</mat-icon>
+
+      <h1 id="app-title">Student Course Management</h1>
+
+      <p id="app-subtitle">{{ isSignUp ? 'Create a new account' : 'Login to continue' }}</p>
+
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" id="auth-form">
+
+      <!-- Username -->
+      <mat-form-field appearance="outline" class="full-width">
+
+        <mat-label>Username</mat-label>
+
+        <input
+          matInput
+          id="username-input"
+          type="text"
+          formControlName="username"
+          placeholder="Enter username">
+
+        <mat-icon matSuffix>person</mat-icon>
+        
+        <mat-error *ngIf="loginForm.get('username')?.hasError('required')">
+          Username is required
+        </mat-error>
+        <mat-error *ngIf="loginForm.get('username')?.hasError('minlength')">
+          Minimum 4 characters required
+        </mat-error>
+
+      </mat-form-field>
+
+      <!-- Password -->
+      <mat-form-field appearance="outline" class="full-width">
+
+        <mat-label>Password</mat-label>
+
+        <input
+          matInput
+          id="password-input"
+          [type]="hidePassword ? 'password' : 'text'"
+          formControlName="password"
+          placeholder="Enter password">
+
+        <button
+          mat-icon-button
+          matSuffix
+          type="button"
+          (click)="hidePassword=!hidePassword"
+          aria-label="Toggle password visibility">
+
+          <mat-icon>
+            {{hidePassword ? 'visibility_off' : 'visibility'}}
+          </mat-icon>
+
+        </button>
+
+        <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+          Password is required
+        </mat-error>
+        <mat-error *ngIf="loginForm.get('password')?.hasError('minlength')">
+          Minimum 4 characters required
+        </mat-error>
+
+      </mat-form-field>
+
+      <!-- Confirm Password (visible in Sign Up mode) -->
+      <mat-form-field appearance="outline" class="full-width" *ngIf="isSignUp">
+
+        <mat-label>Confirm Password</mat-label>
+
+        <input
+          matInput
+          id="confirm-password-input"
+          [type]="hideConfirmPassword ? 'password' : 'text'"
+          formControlName="confirmPassword"
+          placeholder="Confirm password">
+
+        <button
+          mat-icon-button
+          matSuffix
+          type="button"
+          (click)="hideConfirmPassword=!hideConfirmPassword"
+          aria-label="Toggle confirm password visibility">
+
+          <mat-icon>
+            {{hideConfirmPassword ? 'visibility_off' : 'visibility'}}
+          </mat-icon>
+
+        </button>
+
+        <mat-error *ngIf="loginForm.get('confirmPassword')?.hasError('required')">
+          Please confirm your password
+        </mat-error>
+        <mat-error *ngIf="loginForm.hasError('mismatch') && loginForm.get('confirmPassword')?.touched">
+          Passwords do not match
+        </mat-error>
+
+      </mat-form-field>
+
+      <button
+        mat-raised-button
+        color="primary"
+        class="login-btn"
+        type="submit"
+        id="submit-auth-btn"
+        [disabled]="loading">
+
+        <mat-spinner
+          *ngIf="loading"
+          diameter="22"
+          class="button-spinner">
+        </mat-spinner>
+
+        <span *ngIf="!loading">
+          {{ isSignUp ? 'REGISTER' : 'LOGIN' }}
+        </span>
+
+      </button>
+
+      <!-- Toggle Mode Link -->
+      <div class="toggle-container">
+        <button type="button" mat-button color="accent" (click)="toggleMode()" id="toggle-auth-mode">
+          {{ isSignUp ? 'Already have an account? Sign In' : "Don't have an account? Sign Up" }}
+        </button>
+      </div>
+
+    </form>
+
+  </mat-card>
+
+</div>

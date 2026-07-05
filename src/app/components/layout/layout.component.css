@@ -1,0 +1,327 @@
+/* ========================= */
+/* SIDEBAR (PASTEL FIX) */
+/* ========================= */
+
+.sidebar {
+
+    width: 260px;
+
+    background: var(--sidebar-gradient);
+
+    color: var(--text-primary);
+
+    border-right: 1px solid var(--border-color);
+
+    box-shadow: var(--shadow-md);
+
+    display: flex;
+
+    flex-direction: column;
+
+    overflow-y: auto;
+    z-index: 1000;
+    transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Sidebar Logo */
+.logo {
+
+    padding: 25px 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    border-bottom: 1px solid var(--border-color);
+
+}
+
+.logo mat-icon {
+
+    font-size: 44px;
+
+    width: 44px;
+
+    height: 44px;
+
+    color: var(--primary-color);
+
+}
+
+.logo h2 {
+
+    margin: 0;
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    color: var(--text-primary);
+
+}
+
+.logo small {
+
+    color: var(--text-secondary);
+
+    font-size: 12px;
+
+}
+
+/* ========================= */
+/* SIDEBAR ITEMS */
+/* ========================= */
+
+.mat-mdc-list-item {
+
+    height: 52px;
+
+    margin: 8px 14px;
+
+    border-radius: 14px;
+
+    color: var(--text-secondary) !important;
+
+    transition: all 0.25s ease;
+
+}
+
+.mat-mdc-list-item mat-icon {
+
+    margin-right: 15px;
+    color: var(--text-secondary);
+
+}
+
+.mat-mdc-list-item:hover {
+
+    background: var(--border-color);
+
+    transform: translateX(8px);
+
+    color: var(--text-primary) !important;
+
+}
+
+/* Active menu */
+.active {
+
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color)) !important;
+
+    color: white !important;
+
+    box-shadow: 0 8px 20px rgba(99, 102, 241, .25);
+
+    font-weight: 600;
+
+    transform: translateX(6px);
+}
+
+.active mat-icon {
+
+    color: white !important;
+
+}
+
+/* ========================= */
+/* TOP TOOLBAR (SOFT) */
+/* ========================= */
+
+mat-toolbar {
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+
+    height: 72px;
+
+    color: var(--text-primary) !important;
+
+    padding: 0 25px;
+
+    background: var(--bg-secondary) !important;
+
+    border-bottom: 1px solid var(--border-color) !important;
+
+    box-shadow: var(--shadow-sm);
+    transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Title */
+.title {
+
+    margin-left: 15px;
+
+    font-size: 20px;
+
+    font-weight: 700;
+
+    letter-spacing: .4px;
+
+    color: var(--text-primary);
+
+}
+
+.spacer {
+
+    flex: 1;
+
+}
+
+/* Icons in toolbar */
+mat-toolbar mat-icon {
+
+    color: var(--text-secondary);
+
+}
+
+.layout {
+    height: 100vh;
+    display: flex;
+}
+
+mat-sidenav-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.page {
+    flex: 1;
+    padding: 35px;
+    background: var(--page-gradient);
+    overflow-y: auto;
+    min-height: 0;
+    transition: background 0.3s ease;
+}
+
+router-outlet+* {
+    display: block;
+    width: 100%;
+}
+
+/* ========================= */
+/* RESPONSIVE */
+/* ========================= */
+
+@media(max-width:768px) {
+
+    .sidebar {
+
+        width: 240px;
+
+    }
+
+    .page {
+
+        padding: 20px;
+    }
+
+    .title {
+
+        font-size: 16px;
+
+    }
+
+}
+
+@media(max-width:600px) {
+
+    .sidebar {
+
+        width: 260px;
+
+    }
+
+    .page {
+
+        padding: 15px;
+    }
+
+    .title {
+
+        font-size: 14px;
+
+        margin-left: 10px;
+
+    }
+
+    mat-toolbar {
+
+        height: 60px;
+
+        padding: 0 15px;
+
+    }
+
+}
+
+.profile-avatar {
+
+    width: 36px;
+
+    height: 36px;
+
+    border-radius: 50%;
+
+    background: var(--primary-color);
+
+    color: white;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-weight: bold;
+
+    font-size: 16px;
+
+}
+
+.footer{
+
+    padding:18px;
+
+    text-align:center;
+
+    color:var(--text-secondary);
+
+    font-size:14px;
+
+    border-top:1px solid var(--border-color);
+
+    background:var(--bg-secondary);
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+/* ===========================================
+   DARK MODE
+=========================================== */
+
+.dark-theme .logo h2 {
+    color: var(--text-primary) !important;
+}
+
+.dark-theme .logo small {
+    color: var(--text-secondary) !important;
+}
+
+.dark-theme .logo mat-icon {
+    color: var(--primary-color) !important;
+}
+
+.dark-theme .title {
+    color: var(--text-primary) !important;
+}
+
+.dark-theme .footer {
+    color: var(--text-secondary) !important;
+    background: var(--bg-secondary) !important;
+    border-top: 1px solid var(--border-color) !important;
+}

@@ -1,1 +1,242 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  /* Colors */
+  --bg-primary: #f5f7fb;
+  --bg-secondary: #ffffff;
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+  --border-color: #e2e8f0;
+  --primary-color: #4f46e5;
+  --primary-hover: #4338ca;
+  --accent-color: #a855f7;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.12);
+  --sidebar-gradient: linear-gradient(180deg, #f8fafc, #e2e8f0);
+  --page-gradient: linear-gradient(180deg, #f8fafc, #f1f5f9);
+  --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+}
+
+.dark-theme {
+  --bg-primary: #0b0f19 !important;
+  --bg-secondary: #111827 !important;
+  --text-primary: #f8fafc !important;
+  --text-secondary: #94a3b8 !important;
+  --border-color: #1f2937;
+  --primary-color: #6366f1;
+  --primary-hover: #4f46e5;
+  --accent-color: #c084fc;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.5);
+  --sidebar-gradient: linear-gradient(180deg, #111827, #0b0f19);
+  --page-gradient: linear-gradient(180deg, #0b0f19, #111827);
+  --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Outfit', 'Inter', Roboto, "Helvetica Neue", sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+app-root {
+  height: 100%;
+  display: block;
+}
+
+html, body, app-root {
+  height: 100%;
+  margin: 0;
+}
+
+mat-sidenav-container {
+  height: 100vh;
+}
+
+/* Material component resets using variables */
+body.dark-theme .mat-mdc-card {
+  background-color: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+
+body.dark-theme mat-toolbar {
+  background-color: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+  border-bottom: 1px solid var(--border-color) !important;
+}
+
+body.dark-theme mat-sidenav {
+  background-color: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+  border-right: 1px solid var(--border-color) !important;
+}
+
+body.dark-theme .mat-mdc-list-item {
+  color: var(--text-primary) !important;
+}
+
+body.dark-theme .mat-mdc-list-item mat-icon {
+  color: var(--text-primary) !important;
+}
+
+body.dark-theme .mat-mdc-list-item:hover {
+  color: var(--text-primary) !important;
+}
+
+.dark-theme .active {
+  color: white !important;
+}
+
+.dark-theme .active mat-icon {
+  color: white !important;
+}
+
+.dark-theme .mat-mdc-dialog-container .mdc-dialog__surface {
+  background-color: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+  border-radius: 20px !important;
+  box-shadow: var(--shadow-lg) !important;
+}
+
+.dark-theme input.mat-mdc-input-element,
+.dark-theme textarea.mat-mdc-input-element {
+  color: var(--text-primary) !important;
+}
+
+.dark-theme .mat-mdc-form-field-label {
+  color: var(--text-secondary) !important;
+}
+
+.dark-theme .mat-mdc-form-field .mat-mdc-text-field-wrapper {
+  background-color: var(--bg-secondary) !important;
+}
+
+.dark-theme .mat-mdc-text-field {
+  color: var(--text-primary) !important;
+}
+
+.dark-theme .mat-mdc-form-field .mat-mdc-form-field-input-control::placeholder {
+  color: var(--text-secondary) !important;
+}
+
+.dark-theme .mat-mdc-form-field .mat-mdc-form-field-input-control::-webkit-input-placeholder {
+  color: var(--text-secondary) !important;
+}
+
+.dark-theme .mat-mdc-form-field .mat-mdc-form-field-input-control::-moz-placeholder {
+  color: var(--text-secondary) !important;
+}
+
+.dark-theme .mat-mdc-paginator {
+  background-color: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+  border-top: 1px solid var(--border-color) !important;
+}
+
+.dark-theme .mat-mdc-select-value {
+  color: var(--text-primary) !important;
+}
+
+.dark-theme .mat-mdc-option {
+  color: var(--text-primary) !important;
+  background-color: var(--bg-secondary) !important;
+}
+
+.dark-theme .mat-mdc-option:hover:not(.mdc-list-item--disabled) {
+  background-color: var(--bg-primary) !important;
+}
+
+.dark-theme .mat-mdc-menu-panel {
+  background-color: var(--bg-secondary) !important;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-md) !important;
+}
+
+.dark-theme button.mat-mdc-menu-item {
+  color: var(--text-primary) !important;
+}
+
+.dark-theme .mat-mdc-table {
+  background-color: var(--bg-secondary) !important;
+}
+
+.dark-theme .mat-mdc-header-cell {
+  color: var(--text-primary) !important;
+}
+
+.dark-theme .mat-mdc-cell {
+  color: var(--text-secondary) !important;
+  border-bottom: 1px solid var(--border-color) !important;
+}
+
+.dark-theme mat-dialog-actions {
+  background: var(--bg-secondary) !important;
+  border-top: 1px solid var(--border-color) !important;
+}
+
+.dark-theme mat-toolbar .title {
+  color: var(--text-primary) !important;
+}
+
+.dark-theme mat-toolbar mat-icon {
+  color: var(--text-primary) !important;
+}
+
+.dark-theme .mat-mdc-button {
+  color: var(--text-primary) !important;
+}
+
+.dark-theme .mat-mdc-raised-button {
+  color: white !important;
+}
+
+.dark-theme .mat-mdc-icon-button {
+  color: var(--text-primary) !important;
+}
+
+.dark-theme .mat-mdc-radio-button .mdc-radio__background {
+  border-color: var(--text-secondary) !important;
+}
+
+.dark-theme .mat-mdc-radio-button .mdc-radio__outer-circle {
+  border-color: var(--text-secondary) !important;
+}
+
+.dark-theme .mat-mdc-radio-button.mat-mdc-radio-checked .mdc-radio__outer-circle {
+  border-color: var(--primary-color) !important;
+}
+
+.dark-theme .mat-mdc-radio-label {
+  color: var(--text-primary) !important;
+}
+
+.dark-theme .mat-mdc-checkbox .mdc-checkbox__checkmark {
+  color: var(--text-primary) !important;
+}
+
+.dark-theme .mat-mdc-checkbox-label {
+  color: var(--text-primary) !important;
+}
+
+/* Custom global styles for scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}

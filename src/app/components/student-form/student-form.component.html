@@ -1,0 +1,230 @@
+<h2 mat-dialog-title class="dialog-title">
+
+    <mat-icon color="primary">
+
+        {{ isEdit ? 'edit' : 'person_add' }}
+
+    </mat-icon>
+
+    {{ isEdit ? 'Update Student' : 'Add New Student' }}
+
+</h2>
+
+<mat-dialog-content>
+
+<form [formGroup]="studentForm" id="student-crud-form">
+
+    <div class="form-grid">
+
+        <!-- Name -->
+        <mat-form-field appearance="outline" class="full-width">
+
+            <mat-label>Name</mat-label>
+
+            <mat-icon matPrefix>person</mat-icon>
+
+            <input
+                matInput
+                id="form-student-name"
+                formControlName="name"
+                placeholder="Enter full name">
+
+            <mat-error *ngIf="studentForm.get('name')?.hasError('required')">
+                Name is required
+            </mat-error>
+            <mat-error *ngIf="studentForm.get('name')?.hasError('minlength')">
+                Name must be at least 3 characters long
+            </mat-error>
+
+        </mat-form-field>
+
+        <!-- Email -->
+        <mat-form-field appearance="outline" class="full-width">
+
+            <mat-label>Email</mat-label>
+
+            <mat-icon matPrefix>mail</mat-icon>
+
+            <input
+                matInput
+                id="form-student-email"
+                type="email"
+                formControlName="email"
+                placeholder="Enter email address">
+
+            <mat-error *ngIf="studentForm.get('email')?.hasError('required')">
+                Email is required
+            </mat-error>
+            <mat-error *ngIf="studentForm.get('email')?.hasError('email')">
+                Please enter a valid email address
+            </mat-error>
+
+        </mat-form-field>
+
+        <!-- Mobile -->
+        <mat-form-field appearance="outline" class="full-width">
+
+            <mat-label>Mobile</mat-label>
+
+            <mat-icon matPrefix>call</mat-icon>
+
+            <input
+                matInput
+                id="form-student-mobile"
+                maxlength="10"
+                formControlName="mobile"
+                placeholder="10-digit mobile number">
+
+            <mat-error *ngIf="studentForm.get('mobile')?.hasError('required')">
+                Mobile number is required
+            </mat-error>
+            <mat-error *ngIf="studentForm.get('mobile')?.hasError('pattern')">
+                Please enter a valid 10-digit mobile number
+            </mat-error>
+
+        </mat-form-field>
+
+        <!-- Course -->
+        <mat-form-field appearance="outline" class="full-width">
+
+            <mat-label>Course</mat-label>
+
+            <mat-icon matPrefix>school</mat-icon>
+
+            <mat-select formControlName="course" id="form-student-course">
+
+                <mat-option
+                    *ngFor="let course of courses"
+                    [value]="course">
+
+                    {{ course }}
+
+                </mat-option>
+
+            </mat-select>
+
+            <mat-error *ngIf="studentForm.get('course')?.hasError('required')">
+                Please select a course
+            </mat-error>
+
+        </mat-form-field>
+
+    </div>
+
+    <!-- Gender -->
+    <div class="gender-section">
+
+        <label class="gender-title">
+
+            Gender *
+
+        </label>
+
+        <mat-radio-group formControlName="gender" id="form-student-gender">
+
+            <mat-radio-button value="Male">
+
+                Male
+
+            </mat-radio-button>
+
+            <mat-radio-button value="Female">
+
+                Female
+
+            </mat-radio-button>
+
+        </mat-radio-group>
+        
+        <div class="error-text" *ngIf="studentForm.get('gender')?.touched && studentForm.get('gender')?.hasError('required')">
+            Please select a gender
+        </div>
+
+    </div>
+
+    <!-- Date of Birth -->
+    <mat-form-field appearance="outline" class="full-width">
+
+        <mat-label>Date Of Birth</mat-label>
+
+        <mat-icon matPrefix>calendar_today</mat-icon>
+
+        <input
+            matInput
+            id="form-student-dob"
+            [matDatepicker]="picker"
+            [max]="today"
+            formControlName="dob"
+            placeholder="Select date of birth">
+
+        <mat-datepicker-toggle
+            matSuffix
+            [for]="picker">
+
+        </mat-datepicker-toggle>
+
+        <mat-datepicker #picker></mat-datepicker>
+
+        <mat-error *ngIf="studentForm.get('dob')?.hasError('required')">
+            Date of birth is required
+        </mat-error>
+        <mat-error *ngIf="studentForm.get('dob')?.hasError('futureDate')">
+            Date of birth cannot be in the future
+        </mat-error>
+
+    </mat-form-field>
+
+    <!-- Address -->
+    <mat-form-field appearance="outline" class="full-width">
+
+        <mat-label>Address</mat-label>
+
+        <mat-icon matPrefix>home</mat-icon>
+
+        <textarea
+            matInput
+            id="form-student-address"
+            rows="4"
+            formControlName="address"
+            placeholder="Enter home address">
+
+        </textarea>
+
+        <mat-error *ngIf="studentForm.get('address')?.hasError('required')">
+            Address is required
+        </mat-error>
+
+    </mat-form-field>
+
+</form>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+
+    <button
+        mat-stroked-button
+        id="btn-close-form"
+        (click)="close()">
+
+        Cancel
+
+    </button>
+
+    <button
+        mat-raised-button
+        color="primary"
+        id="btn-save-student"
+        (click)="saveStudent()">
+
+        <mat-icon>
+
+            {{ isEdit ? 'save' : 'person_add' }}
+
+        </mat-icon>
+
+        {{ isEdit ? 'Update' : 'Save' }}
+
+    </button>
+
+</mat-dialog-actions>
